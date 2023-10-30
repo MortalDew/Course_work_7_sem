@@ -1,0 +1,25 @@
+version: '2.9'
+
+services:
+  db:
+    container_name: postgres_db
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_USER: matuamod
+      POSTGRES_PASSWORD: matua335
+      POSTGRES_DB: car_rental_db
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+    
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    depends_on:
+      - db
+    environment:
+      PGADMIN_DEFAULT_EMAIL: matua@models.com
+      PGADMIN_DEFAULT_PASSWORD: matua335
+    ports:
+      - "5050:80"
